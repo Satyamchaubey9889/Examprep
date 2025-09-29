@@ -7,7 +7,7 @@ const UserHome = () => {
 
   const handlefetch = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/dashboard/exams/${examineId}`);
+      // const response = await fetch(`http://localhost:5000/api/dashboard/exams/${examineId}`);
       const result = await response.json();
       setData(result);
       const res = await axios.get(`http://localhost:5000/api/dashboard/examinee-result/${examineId}`);
