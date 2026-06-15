@@ -6,7 +6,7 @@ const Result = () => {
   const userId = localStorage.getItem('userId')
 
   const handlefetch = async () => {
-    const res = await axios.get(`http://localhost:5000/api/exams/examinee-result/${userId}`);
+    const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/exams/examinee-result/${userId}`);
     setData(Array.isArray(res.data.message) ? res.data.message : [res.data.message]);
   }
 

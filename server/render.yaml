@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: examprep-api
+    env: node
+    buildCommand: npm install
+    startCommand: npm start

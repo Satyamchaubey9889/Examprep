@@ -18,7 +18,7 @@ const Registration = () => {
   useEffect(() => {
     const handlefetch = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/session");
+        const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/session`);
         setSessions(res.data.data);
       } catch (er) {
         console.log(er);
@@ -37,7 +37,7 @@ const Registration = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:5000/api/examinee', formData);
+      const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/examinee`, formData);
       alert('Examinee Registered!');
       setFormData({
         name: '',
@@ -84,24 +84,24 @@ const Registration = () => {
       padding: '1px',
       textAlign: 'center',
     },
-     abstractCircles: {
-            position: 'absolute',
-            borderRadius: '50%',
-            background: 'rgba(239, 104, 248, 0.15)',
-            zIndex: 0,
-        },
-        bigCircle: {
-            width: '140px',
-            height: '140px',
-            top: '18%',
-            left: '10%',
-        },
-        smallCircle: {
-            width: '90px',
-            height: '90px',
-            bottom: '12%',
-            right: '65%',
-        },
+    abstractCircles: {
+      position: 'absolute',
+      borderRadius: '50%',
+      background: 'rgba(239, 104, 248, 0.15)',
+      zIndex: 0,
+    },
+    bigCircle: {
+      width: '140px',
+      height: '140px',
+      top: '18%',
+      left: '10%',
+    },
+    smallCircle: {
+      width: '90px',
+      height: '90px',
+      bottom: '12%',
+      right: '65%',
+    },
     welcomeText: {
       fontSize: '28px',
       fontWeight: '700',
@@ -153,16 +153,16 @@ const Registration = () => {
       resize: 'vertical',
       marginBottom: '10px',
     },
-     heading: {
-            fontSize: '40px',
-            marginBottom: '2px',
-            fontWeight: '600',
-           display: 'inline-block',
-           
-            borderBottom:'4px solid' ,
-            color:'#4a0b65ff',
-            
-        },
+    heading: {
+      fontSize: '40px',
+      marginBottom: '2px',
+      fontWeight: '600',
+      display: 'inline-block',
+
+      borderBottom: '4px solid',
+      color: '#4a0b65ff',
+
+    },
     submitBtn: {
       width: '100%',
       padding: '10px',
@@ -183,8 +183,8 @@ const Registration = () => {
 
         {/* Left Panel */}
         <div style={styles.leftPanel}>
-           <div style={{ ...styles.abstractCircles, ...styles.bigCircle }} />
-                    <div style={{ ...styles.abstractCircles, ...styles.smallCircle }} />
+          <div style={{ ...styles.abstractCircles, ...styles.bigCircle }} />
+          <div style={{ ...styles.abstractCircles, ...styles.smallCircle }} />
           <div style={styles.welcomeText}>Welcome to ExamPrep</div>
           <div style={styles.subText}>
             Register now and unlock your personalized dashboard to manage exams, view results, and access all your academic details in one place.
@@ -194,10 +194,10 @@ const Registration = () => {
         {/* Right Panel */}
         <div style={styles.rightPanel}>
           <form onSubmit={handleSubmit} style={styles.formBox}>
-           <div style={{textAlign:'center'}}>
-                            <div className='border-b-2' style={styles.heading}>Registration Page</div>
-                        </div>
-                <br />
+            <div style={{ textAlign: 'center' }}>
+              <div className='border-b-2' style={styles.heading}>Registration Page</div>
+            </div>
+            <br />
             <div style={styles.row}>
               <input type="text" name="name" placeholder="Full Name" value={formData.name} onChange={handleChange} required style={styles.input} />
               <input type="email" name="email" placeholder="Email Address" value={formData.email} onChange={handleChange} required style={styles.input} />

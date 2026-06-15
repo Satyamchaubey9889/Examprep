@@ -5,7 +5,7 @@ import { Link } from 'react-router';
 const MyExam = () => {
   const [exam, setExam] = React.useState([]);
   const fetchExams = async () => {
-    const res = await axios.get('http://localhost:5000/api/exams/exams');
+    const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/exams/exams`);
     setExam(res.data);
     //console.log(res.data);
 

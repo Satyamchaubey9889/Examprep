@@ -7,10 +7,10 @@ const UserHome = () => {
 
   const handlefetch = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/dashboard/exams/${examineId}`);
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/dashboard/exams/${examineId}`);
       const result = await response.json();
       setData(result);
-      const res = await axios.get(`http://localhost:5000/api/dashboard/examinee-result/${examineId}`);
+      const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/dashboard/examinee-result/${examineId}`);
       console.log(res.data.message)
       setreslt(Array.isArray(res.data.message) ? res.data.message : [res.data.message]);
 

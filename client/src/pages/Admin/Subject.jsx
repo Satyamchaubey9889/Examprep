@@ -7,7 +7,7 @@ const Subject = () => {
   const [form, setForm] = useState({
     subjectname: '',
     description: '',
-    
+
   })
 
   // fetch data hook
@@ -26,21 +26,21 @@ const Subject = () => {
   }
   // handleSubmit
   const [id, setId] = useState({
-    id:'',
+    id: '',
   })
   const handleSubmit = async (e) => {
     // window.alert("hello");
     e.preventDefault();
     try {
-      if(editform){
-        const res = await axios.put(`http://localhost:5000/api/subject/${id.id}`,form);
-        if(res){
+      if (editform) {
+        const res = await axios.put(`${import.meta.env.VITE_API_BASE_URL}/api/subject/${id.id}`, form);
+        if (res) {
           alert('Subject Updated Successfully')
-           handlefetch();
+          handlefetch();
         }
       }
-      else{
-        const res = await axios.post('http://localhost:5000/api/subject', form)
+      else {
+        const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/subject`, form)
         if (res) {
           alert('Subject Added Successfully')
           handlefetch();
@@ -53,7 +53,7 @@ const Subject = () => {
   }
   // fetch data api
   const handlefetch = async () => {
-    const res = await axios.get('http://localhost:5000/api/subject')
+    const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/subject`)
     // console.log(res.data);
     setData(res.data.data);
   }
@@ -65,7 +65,7 @@ const Subject = () => {
   // handle delete logic
   const handleDelete = async (id) => {
     // console.log(id)
-    const res = await axios.delete(`http://localhost:5000/api/subject/${id}`);
+    const res = await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/subject/${id}`);
     if (res) {
       alert("Deleted Successfully");
     }
@@ -76,17 +76,17 @@ const Subject = () => {
   }
   // handle edit
   const [editform, setEditForm] = useState(null);
-  
+
   const handleEdit = async (item) => {
     // console.log(item._id)
 
     setForm({
       subjectname: item.subjectname,
       description: item.description,
-    
+
     })
     setId({
-      id:item._id
+      id: item._id
     })
     setEditForm(true);
     // console.log(form);
@@ -97,7 +97,7 @@ const Subject = () => {
 
         <div className="row ">
           <div className="col-sm-12 ">
-           <div
+            <div
               className="card"
               style={{
                 border: "1px solid #6f42c1",
@@ -128,7 +128,7 @@ const Subject = () => {
                       <textarea name="description" value={form.description} className="form-control" onChange={handleChange} placeholder="" rows="2"></textarea>
                     </div>
                   </div>
-                  
+
                   <button type="submit" className="btn btn-light text-white  mt-1" style={{ background: "#39064fff " }}>Add Subject</button>
                 </form>
               </div>
@@ -137,10 +137,10 @@ const Subject = () => {
         </div>
         <div className="row mt-1">
           <div className="col-sm-12">
-            <div className="card mx-auto mt-2 "  style={{
-                border: "1px solid #6f42c1",
-                width: "100%",
-              }}>
+            <div className="card mx-auto mt-2 " style={{
+              border: "1px solid #6f42c1",
+              width: "100%",
+            }}>
               <div className="card-body">
                 <div className="container p-0">
                   <h3 className="fw-bold" style={{ color: "#6f42c1" }}>Subject List</h3>
@@ -150,7 +150,7 @@ const Subject = () => {
                         <th> S.No.</th>
                         <th> Subject Name</th>
                         <th> Description</th>
-                        
+
                         <th>Action</th>
                       </tr>
                     </thead>
@@ -158,18 +158,18 @@ const Subject = () => {
                       {/* {Map through subjects data here} */}
 
                       {data.map((item, i) => (
-                        <tr key={item._id }>
+                        <tr key={item._id}>
                           <td>{i + 1}</td>
                           <td>{item.subjectname}</td>
                           <td>{item.description}</td>
-                         
+
                           <td>
                             <button className="btn-edit me-2" onClick={() => {
                               handleEdit(item)
                             }}>Edit</button>
 
 
-                            <button  className="btn-delete"  onClick={() => {
+                            <button className="btn-delete" onClick={() => {
                               handleDelete(item._id)
                             }}>Delete</button>
                           </td>
